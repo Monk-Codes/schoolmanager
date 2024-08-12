@@ -48,14 +48,14 @@ const Sidebar = ({ setActiveSection }) => {
      Teachers
     </a>
     <a
-     href="#parents"
+     href="#principal"
      onClick={() => {
-      setActiveLink("#parents");
-      setActiveSection("parents");
+      setActiveLink("#principal");
+      setActiveSection("principal");
      }}
-     className={`text-white py-2 rounded-md text-center ${activeLink === "#parents" ? "bg-blue-500" : "hover:bg-blue-500"}`}
+     className={`text-white py-2 rounded-md text-center ${activeLink === "#principal" ? "bg-blue-500" : "hover:bg-blue-500"}`}
     >
-     Parents
+     Principal
     </a>
     <a
      href="#events"
