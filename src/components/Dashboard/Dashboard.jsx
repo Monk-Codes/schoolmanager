@@ -46,11 +46,29 @@ const Dashboard = () => {
      </div>
      <div className="flex flex-col bg-slate-600 rounded-xl p-1">
       <div className="p-1 bg-white text-blue-500 font-semibold rounded-full">Educational Stage</div>
-      <div>School stats</div>
+      <div className="grid grid-cols-3 gap-2 font-semibold p-2 text-center">
+       <div>Grade 1</div>
+       <div>Grade 2</div>
+       <div>Grade 3</div>
+       <div>Grade 4</div>
+       <div>Grade 5</div>
+       <div>Grade 6</div>
+       <div>Grade 7</div>
+       <div>Grade 8</div>
+       <div>Grade 9</div>
+       <div>Grade 10</div>
+       <div>Grade 11</div>
+       <div>Grade 12</div>
+      </div>
      </div>
      <div className="flex flex-col bg-slate-600 rounded-xl p-1">
       <div className="p-1 bg-white text-blue-500 font-semibold rounded-full">Activity & Events</div>
       <div>List of events</div>
+      <div>List of activities</div>
+      <div>List of assignments</div>
+      <div>List of exams</div>
+      <div>List of quizzes</div>
+      <div>List of tests</div>
      </div>
      <div className="flex flex-col bg-slate-600 rounded-xl p-1">
       <div className="p-1 bg-white text-blue-500 font-semibold rounded-full">Star Toppers</div>
