@@ -25,7 +25,7 @@ function App() {
  //  handleLogout();
 
  return (
-  <div className="bg-cyan-500 h-screen items-center justify-center flex  p-10">
+  <div className="bg-cyan-500 h-screen p-12">
    <div className="w-full h-full flex">
     {!isLoggedIn ? (
      <Login onLogin={handleLogin} />

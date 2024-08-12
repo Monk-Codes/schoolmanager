@@ -4,7 +4,7 @@ const Sidebar = ({ setActiveSection }) => {
  const [activeLink, setActiveLink] = useState("#dashboard");
 
  return (
-  <aside className="bg-blue-400 w-52 flex flex-col">
+  <aside className="bg-blue-400 w-52 flex h-4/5 flex-col">
    {/* Top Section: Logo */}
    <div className="flex flex-col items-center py-2">
     <div className="text-white font-bold text-xl mb-4">St.Elios Academy</div>
