@@ -1,78 +1,115 @@
-import Calendar from "react-calendar";
-const Teachers = () => {
- return (
-  <section className="flex flex-1 justify-center bg-gradient-to-r from-blue-500 to-green-500 relative ">
-   {/* Animated Background Shapes */}
-   <div className="absolute inset-0">
-    <div className="absolute w-32 h-32 bg-white rounded-full opacity-10 top-1/4 left-1/3 transform animate-bounce"></div>
-    <div className="absolute w-48 h-48 bg-white rounded-full opacity-20 bottom-1/4 right-1/3 transform animate-pulse"></div>
-   </div>
+import { useState } from "react";
 
+const Teachers = () => {
+ // Sample data for classrooms and students
+ const [classroom, setClassroom] = useState({
+  name: "Math Class",
+  teacher: "Mr. Smith",
+  students: [
+   { id: 1, name: "John Doe", age: 16 },
+   { id: 2, name: "Jane Smith", age: 15 },
+   { id: 3, name: "Emily Johnson", age: 17 },
+   { id: 1, name: "John Doe", age: 16 },
+   { id: 2, name: "Jane Smith", age: 15 },
+   { id: 3, name: "Emily Johnson", age: 17 },
+   { id: 1, name: "John Doe", age: 16 },
+   { id: 2, name: "Jane Smith", age: 15 },
+   { id: 3, name: "Emily Johnson", age: 17 },
+   { id: 1, name: "John Doe", age: 16 },
+   { id: 2, name: "Jane Smith", age: 15 },
+   { id: 3, name: "Emily Johnson", age: 17 },
+  ],
+  timetable: [
+   { day: "Monday", startTime: "12:00 PM", endTime: "6:00 PM" },
+   { day: "Wednesday", startTime: "12:00 PM", endTime: "6:00 PM" },
+   { day: "Saturday", startTime: "12:00 PM", endTime: "4:00 PM" },
+  ],
+ });
+
+ const handleDeleteStudent = (id) => {
+  const updatedStudents = classroom.students.filter((student) => student.id !== id);
+  setClassroom({ ...classroom, students: updatedStudents });
+  console.log(`Student with id ${id} deleted!`);
+ };
+
+ const handleEditStudent = (id, newName, newAge) => {
+  const updatedStudents = classroom.students.map((student) => (student.id === id ? { ...student, name: newName, age: newAge } : student));
+  setClassroom({ ...classroom, students: updatedStudents });
+  console.log(`Student with id ${id} updated!`);
+ };
+
+ return (
+  <section className="flex flex-1 h-fit justify-center bg-gradient-to-r from-blue-500 to-green-500 relative">
    {/* Dashboard Content */}
    <div className="flex flex-col text-white p-4 w-full max-w-screen-lg">
     {/* Header */}
     <div className="flex justify-between p-4 bg-amber-400 rounded-lg shadow-lg font-semibold">
-     <span>Welcome to St. Elios Academy</span>
+     <span>Welcome to Teacher&apos;s Dashboard</span>
      <span>School Year 2024-2025</span>
     </div>
 
-    {/* Info Tabs */}
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 mt-2">
-     <div className="flex flex-col bg-red-400 text-center p-1 rounded-lg">
-      <div className="p-1 bg-white text-blue-500 font-semibold rounded-full shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-95">Schools</div>
-      <span className="bg-red-500 p-1 mt-2 rounded-lg">23</span>
+    {/* Classroom Details */}
+    <div className="p-4">
+     <h3 className="text-lg font-semibold">Classroom Details:</h3>
+     <p>
+      <strong>Classroom Name:</strong> {classroom.name}
+     </p>
+     <p>
+      <strong>Assigned Teacher:</strong> {classroom.teacher}
+     </p>
+     {/* Timetable */}
+     <div className="mt-8">
+      <h3 className="text-lg font-semibold">Classroom Timetable:</h3>
+      <table className="w-full bg-white text-black rounded-lg">
+       <thead>
+        <tr className="bg-gray-200">
+         <th className="p-2">Day</th>
+         <th className="p-2">Start Time</th>
+         <th className="p-2">End Time</th>
+        </tr>
+       </thead>
+       <tbody>
+        {classroom.timetable.map((session, index) => (
+         <tr key={index} className="border-b">
+          <td className="p-2 text-center">{session.day}</td>
+          <td className="p-2 text-center">{session.startTime}</td>
+          <td className="p-2 text-center">{session.endTime}</td>
+         </tr>
+        ))}
+       </tbody>
+      </table>
      </div>
-     <div className="flex flex-col bg-red-400 text-center p-1 rounded-lg">
-      <div className="p-1 bg-white text-blue-500 font-semibold rounded-full shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-95">Teachers</div>
-      <span className="bg-red-500 p-1 mt-2 rounded-lg">23</span>
-     </div>
-     <div className="flex flex-col bg-red-400 text-center p-1 rounded-lg">
-      <div className="p-1 bg-white text-blue-500 font-semibold rounded-full shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-95">Students</div>
-      <span className="bg-red-500 p-1 mt-2 rounded-lg">23</span>
-     </div>
-     <div className="flex flex-col bg-red-400 text-center p-1 rounded-lg">
-      <div className="p-1 bg-white text-blue-500 font-semibold rounded-full shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-95">Staffs</div>
-      <span className="bg-red-500 p-1 mt-2 rounded-lg">23</span>
-     </div>
-    </div>
 
-    {/* Grid Tabs */}
-    <div className="grid grid-cols-2 gap-2 mt-2 text-center">
-     <div className="flex flex-col bg-slate-600 rounded-xl p-1">
-      <div className="p-1 bg-white text-blue-500 font-semibold rounded-full">Calendar</div>
-      <div>
-       <Calendar />
-      </div>
-     </div>
-     <div className="flex flex-col bg-slate-600 rounded-xl p-1">
-      <div className="p-1 bg-white text-blue-500 font-semibold rounded-full">Educational Stage</div>
-      <div className="grid grid-cols-3 gap-2 font-semibold p-2 text-center">
-       <div>Grade 1</div>
-       <div>Grade 2</div>
-       <div>Grade 3</div>
-       <div>Grade 4</div>
-       <div>Grade 5</div>
-       <div>Grade 6</div>
-       <div>Grade 7</div>
-       <div>Grade 8</div>
-       <div>Grade 9</div>
-       <div>Grade 10</div>
-       <div>Grade 11</div>
-       <div>Grade 12</div>
-      </div>
-     </div>
-     <div className="flex flex-col bg-slate-600 rounded-xl p-1">
-      <div className="p-1 bg-white text-blue-500 font-semibold rounded-full">Activity & Events</div>
-      <div>List of events</div>
-      <div>List of activities</div>
-      <div>List of assignments</div>
-      <div>List of exams</div>
-      <div>List of quizzes</div>
-      <div>List of tests</div>
-     </div>
-     <div className="flex flex-col bg-slate-600 rounded-xl p-1">
-      <div className="p-1 bg-white text-blue-500 font-semibold rounded-full">Star Toppers</div>
-      <div>Pic of students</div>
+     {/* Students Table */}
+     <div className="mt-8">
+      <h3 className="text-lg font-semibold">Students in Classroom:</h3>
+      <table className="w-full bg-blue-300 text-black rounded-lg">
+       <thead>
+        <tr className="bg-gray-200">
+         <th className="p-2">ID</th>
+         <th className="p-2">Name</th>
+         <th className="p-2">Age</th>
+         <th className="p-2">Actions</th>
+        </tr>
+       </thead>
+       <tbody>
+        {classroom.students.map((student) => (
+         <tr key={student.id} className="">
+          <td className="p-2 text-center">{student.id}</td>
+          <td className="p-2 text-center">{student.name}</td>
+          <td className="p-2 text-center">{student.age}</td>
+          <td className="p-2 text-center">
+           <button onClick={() => handleEditStudent(student.id, "New Name", student.age)} className="bg-blue-500 text-white px-2 py-1 rounded-md hover:bg-blue-600 mr-2">
+            Edit
+           </button>
+           <button onClick={() => handleDeleteStudent(student.id)} className="bg-red-500 text-white px-2 py-1 rounded-md hover:bg-red-600">
+            Delete
+           </button>
+          </td>
+         </tr>
+        ))}
+       </tbody>
+      </table>
      </div>
     </div>
    </div>

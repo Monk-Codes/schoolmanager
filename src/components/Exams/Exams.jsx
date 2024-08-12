@@ -1,13 +1,23 @@
-import Calendar from "react-calendar";
-const Exams = () => {
- return (
-  <section className="flex flex-1 justify-center bg-gradient-to-r from-blue-500 to-green-500 relative ">
-   {/* Animated Background Shapes */}
-   <div className="absolute inset-0">
-    <div className="absolute w-32 h-32 bg-white rounded-full opacity-10 top-1/4 left-1/3 transform animate-bounce"></div>
-    <div className="absolute w-48 h-48 bg-white rounded-full opacity-20 bottom-1/4 right-1/3 transform animate-pulse"></div>
-   </div>
+import { useState } from "react";
 
+const Exams = () => {
+ // Sample data for exams
+ const [exams, setExams] = useState({
+  "Grade 1": {
+   "Section A": [
+    { id: 1, subject: "Math", date: "2024-09-10", time: "9:00 AM" },
+    { id: 2, subject: "English", date: "2024-09-12", time: "11:00 AM" },
+   ],
+   "Section B": [{ id: 3, subject: "Science", date: "2024-09-15", time: "10:00 AM" }],
+  },
+  "Grade 2": {
+   "Section A": [{ id: 4, subject: "History", date: "2024-09-20", time: "1:00 PM" }],
+  },
+  // Add more grades and sections as needed
+ });
+
+ return (
+  <section className="flex flex-1 h-fit justify-center bg-gradient-to-r from-blue-500 to-green-500 relative">
    {/* Dashboard Content */}
    <div className="flex flex-col text-white p-4 w-full max-w-screen-lg">
     {/* Header */}
@@ -16,64 +26,26 @@ const Exams = () => {
      <span>School Year 2024-2025</span>
     </div>
 
-    {/* Info Tabs */}
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 mt-2">
-     <div className="flex flex-col bg-red-400 text-center p-1 rounded-lg">
-      <div className="p-1 bg-white text-blue-500 font-semibold rounded-full shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-95">Schools</div>
-      <span className="bg-red-500 p-1 mt-2 rounded-lg">23</span>
-     </div>
-     <div className="flex flex-col bg-red-400 text-center p-1 rounded-lg">
-      <div className="p-1 bg-white text-blue-500 font-semibold rounded-full shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-95">Teachers</div>
-      <span className="bg-red-500 p-1 mt-2 rounded-lg">23</span>
-     </div>
-     <div className="flex flex-col bg-red-400 text-center p-1 rounded-lg">
-      <div className="p-1 bg-white text-blue-500 font-semibold rounded-full shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-95">Students</div>
-      <span className="bg-red-500 p-1 mt-2 rounded-lg">23</span>
-     </div>
-     <div className="flex flex-col bg-red-400 text-center p-1 rounded-lg">
-      <div className="p-1 bg-white text-blue-500 font-semibold rounded-full shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-95">Staffs</div>
-      <span className="bg-red-500 p-1 mt-2 rounded-lg">23</span>
-     </div>
-    </div>
-
-    {/* Grid Tabs */}
-    <div className="grid grid-cols-2 gap-2 mt-2 text-center">
-     <div className="flex flex-col bg-slate-600 rounded-xl p-1">
-      <div className="p-1 bg-white text-blue-500 font-semibold rounded-full">Calendar</div>
-      <div>
-       <Calendar />
+    {/* Exams List */}
+    <div className="mt-4">
+     <h2 className="text-xl font-bold mb-4">Exams Schedule</h2>
+     {Object.keys(exams).map((grade) => (
+      <div key={grade} className="mb-6">
+       <h3 className="text-lg font-semibold">{grade}</h3>
+       {Object.keys(exams[grade]).map((section) => (
+        <div key={section} className="mb-4">
+         <h4 className="text-md font-semibold">Section {section}</h4>
+         <ul className="list-disc ml-4">
+          {exams[grade][section].map((exam) => (
+           <li key={exam.id} className="py-1">
+            <strong>{exam.subject}</strong> - {exam.date} at {exam.time}
+           </li>
+          ))}
+         </ul>
+        </div>
+       ))}
       </div>
-     </div>
-     <div className="flex flex-col bg-slate-600 rounded-xl p-1">
-      <div className="p-1 bg-white text-blue-500 font-semibold rounded-full">Educational Stage</div>
-      <div className="grid grid-cols-3 gap-2 font-semibold p-2 text-center">
-       <div>Grade 1</div>
-       <div>Grade 2</div>
-       <div>Grade 3</div>
-       <div>Grade 4</div>
-       <div>Grade 5</div>
-       <div>Grade 6</div>
-       <div>Grade 7</div>
-       <div>Grade 8</div>
-       <div>Grade 9</div>
-       <div>Grade 10</div>
-       <div>Grade 11</div>
-       <div>Grade 12</div>
-      </div>
-     </div>
-     <div className="flex flex-col bg-slate-600 rounded-xl p-1">
-      <div className="p-1 bg-white text-blue-500 font-semibold rounded-full">Activity & Events</div>
-      <div>List of events</div>
-      <div>List of activities</div>
-      <div>List of assignments</div>
-      <div>List of exams</div>
-      <div>List of quizzes</div>
-      <div>List of tests</div>
-     </div>
-     <div className="flex flex-col bg-slate-600 rounded-xl p-1">
-      <div className="p-1 bg-white text-blue-500 font-semibold rounded-full">Star Toppers</div>
-      <div>Pic of students</div>
-     </div>
+     ))}
     </div>
    </div>
   </section>

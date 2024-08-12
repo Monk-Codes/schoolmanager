@@ -1,7 +1,7 @@
 import Calendar from "react-calendar";
 const Dashboard = () => {
  return (
-  <section className="flex flex-1 justify-center bg-gradient-to-r from-blue-500 to-purple-500 relative ">
+  <section className="flex flex-1 h-fit justify-center bg-gradient-to-r from-blue-500 to-purple-500 relative ">
    {/* Animated Background Shapes */}
    <div className="absolute inset-0">
     <div className="absolute w-32 h-32 bg-white rounded-full opacity-10 top-1/4 left-1/3 transform animate-bounce"></div>
@@ -9,7 +9,7 @@ const Dashboard = () => {
    </div>
 
    {/* Dashboard Content */}
-   <div className="flex flex-col text-white p-4 w-full max-w-screen-lg ">
+   <div className="flex flex-col text-white p-4 w-full max-w-screen-lg cursor-pointer">
     {/* Header */}
     <div className="flex justify-between p-4 bg-amber-400 rounded-lg shadow-lg font-semibold">
      <span>Welcome to St. Elios Academy</span>
