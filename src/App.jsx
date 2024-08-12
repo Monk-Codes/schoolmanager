@@ -11,15 +11,17 @@ function App() {
  const [activeSection, setActiveSection] = useState("dashboard");
 
  return (
-  <div className="bg-black h-screen flex">
-   <Sidebar setActiveSection={setActiveSection} />
-   <div className="flex flex-1 items-center px-4">
-    {activeSection === "dashboard" && <Dashboard />}
-    {activeSection === "students" && <Students />}
-    {activeSection === "teachers" && <Teachers />}
-    {activeSection === "parents" && <Parents />}
-    {activeSection === "events" && <Events />}
-    {activeSection === "exams" && <Exams />}
+  <div className="bg-black h-screen items-center justify-center flex p-12">
+   <div className="w-full h-full rounded-2xl flex ">
+    <Sidebar setActiveSection={setActiveSection} />
+    <div className="overflow-y-scroll">
+     {activeSection === "dashboard" && <Dashboard />}
+     {activeSection === "students" && <Students />}
+     {activeSection === "teachers" && <Teachers />}
+     {activeSection === "parents" && <Parents />}
+     {activeSection === "events" && <Events />}
+     {activeSection === "exams" && <Exams />}
+    </div>
    </div>
   </div>
  );

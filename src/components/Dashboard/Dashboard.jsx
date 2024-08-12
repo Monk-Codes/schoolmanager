@@ -9,7 +9,7 @@ const Dashboard = () => {
    </div>
 
    {/* Dashboard Content */}
-   <div className="flex flex-col text-white p-4 w-full max-w-screen-lg">
+   <div className="flex flex-col text-white p-4 w-full max-w-screen-lg ">
     {/* Header */}
     <div className="flex justify-between p-4 bg-amber-400 rounded-lg shadow-lg font-semibold">
      <span>Welcome to St. Elios Academy</span>
