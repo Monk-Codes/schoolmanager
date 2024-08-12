@@ -1,15 +1,39 @@
 import { useState } from "react";
 
+const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
 const CreateClassroom = ({ onCreate }) => {
  const [className, setClassName] = useState("");
  const [assignTeacher, setAssignTeacher] = useState("");
+ const [schedule, setSchedule] = useState(
+  daysOfWeek.reduce((acc, day) => {
+   acc[day] = { startTime: "", endTime: "", active: false };
+   return acc;
+  }, {})
+ );
+
+ const handleScheduleChange = (day, field, value) => {
+  setSchedule({
+   ...schedule,
+   [day]: {
+    ...schedule[day],
+    [field]: value,
+   },
+  });
+ };
 
  const handleSubmit = (e) => {
   e.preventDefault();
   if (className.trim()) {
-   onCreate(className, assignTeacher);
+   onCreate(className, assignTeacher, schedule);
    setClassName("");
    setAssignTeacher("");
+   setSchedule(
+    daysOfWeek.reduce((acc, day) => {
+     acc[day] = { startTime: "", endTime: "", active: false };
+     return acc;
+    }, {})
+   );
   } else {
    alert("Please enter a classroom name.");
   }
@@ -38,16 +62,27 @@ const CreateClassroom = ({ onCreate }) => {
       placeholder="Enter Teacher name"
      />
     </div>
+    <div className="mb-4">
+     <h3 className="text-gray-700 mb-2">Classroom Schedule:</h3>
+     {daysOfWeek.map((day) => (
+      <div key={day} className="mb-2">
+       <label className="block text-gray-700">
+        <input type="checkbox" checked={schedule[day].active} onChange={(e) => handleScheduleChange(day, "active", e.target.checked)} className="mr-2" />
+        {day}
+       </label>
+       {schedule[day].active && (
+        <div className="flex space-x-2 mt-2">
+         <input type="time" value={schedule[day].startTime} onChange={(e) => handleScheduleChange(day, "startTime", e.target.value)} className="p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black" />
+         <input type="time" value={schedule[day].endTime} onChange={(e) => handleScheduleChange(day, "endTime", e.target.value)} className="p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black" />
+        </div>
+       )}
+      </div>
+     ))}
+    </div>
     <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
      Create Classroom
     </button>
    </form>
-   <p className="text-sm text-gray-600 mt-4">
-    Already have a classroom?{" "}
-    <a href="#" className="text-blue-500 hover:text-blue-600">
-     Login
-    </a>
-   </p>
   </div>
  );
 };
