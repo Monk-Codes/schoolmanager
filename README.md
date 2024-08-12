@@ -2,6 +2,9 @@
 ## Dashboard for School CMS
 - [Live Demo](https://schoolmanager.vercel.app/)
 <br/>
+# NOTE LOGIN
+## USERNAME: admin
+## password: admin123
 <p align="center">
 <img src="logo.png" alt="image" width="400" height="300">
   <a href="https://github.com/Monk-Codes/schoolmanager">
