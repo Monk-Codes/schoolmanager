@@ -2,8 +2,8 @@ import { useState } from "react";
 
 const Login = ({ onLogin }) => {
  const [isRegistering, setIsRegistering] = useState(false);
- const [username, setUsername] = useState("");
- const [password, setPassword] = useState("");
+ const [username, setUsername] = useState("admin");
+ const [password, setPassword] = useState("admin123");
  const [rollNo, setRollNo] = useState(""); // For registration
  const [studentClass, setStudentClass] = useState(""); // For registration
 

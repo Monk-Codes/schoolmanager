@@ -10,7 +10,7 @@ const Sidebar = ({ setActiveSection }) => {
     <div className="text-white font-bold text-xl mb-4">St.Elios Academy</div>
 
     {/* Search Bar */}
-    <div className="w-full px-4 mb-4">
+    <div className="w-full px-4 mb-2">
      <input type="text" placeholder="Search..." className="w-full px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-white" />
     </div>
    </div>
